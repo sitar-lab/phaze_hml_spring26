@@ -12,7 +12,7 @@ To install the dependencies for Phaze, run:
 
 Add the following path variables in `~/.bashrc`:
 ```bash
-export THIRD_PARTY_PATH=$(pwd)/Phaze/third_party_for_phaze
+export THIRD_PARTY_PATH=$(pwd)/phaze/third_party_for_phaze
 export WHAM_PATH=$THIRD_PARTY_PATH/wham/
 export SUNSTONE_PATH=$THIRD_PARTY_PATH/sunstone/
 export PYTHONPATH=$THIRD_PARTY_PATH:$WHAM_PATH:$SUNSTONE_PATH:$PYTHONPATH

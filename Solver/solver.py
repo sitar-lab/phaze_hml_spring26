@@ -61,7 +61,7 @@ def get_next_acc_config(prev_cc, cc_iter):
     global acc_group_range
 
     converged = False
-    if_all_archs_to_explore = False
+    if_all_archs_to_explore = True
     hysterisis_level = 5
 
     curr_area = prev_cc.area

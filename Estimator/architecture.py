@@ -13,7 +13,7 @@ import json
 bandwidth = 4 * 1024 * 1024 * 1024  # 32 Gbs or 4 GBs, PCIE 3.0
 num_accelerators = 1024  # accelerators
 bytes_per_element = 2  # 16 bits
-frequency = 1.05 * (10**6)  # 1.05 GHz
+frequency = 1.05 * (10**9)  # 1.05 GHz
 
 # types of cores in the architectures
 cores = ["TC", "VC"]
@@ -26,7 +26,8 @@ per_core_config = namedtuple(
 acc_config = namedtuple(
     "acc_config", ["num_tc", "num_vc", "width", "depth", "width_vc", "GLB_Buffer", "area"])
 
-# The maximum accelerator config might not be able to fit the max of each of the above aspects of the core
+# The maximum accelerator config might not be able to fit the max of each of the above aspects of the core 
+# HML Note: updated the max core for the HML assignement (compared to original Phaze)
 max_acc_config_per_dim = acc_config(
     4096, 4096, 256, 256, 256, 128*1024*1024, -1)
 
@@ -111,7 +112,6 @@ def generate_all_cores_to_explore():
                         config = acc_config(2**log_x, 2**log_y,
                                             2**log_w, 2**log_d, 2**log_w, (2**log_glb)*1024*1024, -1)
                         check_if_acc_to_explore(config)
-
 
 def generate_unique_core_configs():
     global tc_configs

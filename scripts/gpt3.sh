@@ -19,4 +19,4 @@ python3 phaze.py \
         --phaze_micro_batch_size $mbs \
         --phaze_sequence_length 2048 \
         --phaze_max_tmp_width 8 \
-        --phaze_hbm_size 32 64 80
+        --phaze_hbm_size 64

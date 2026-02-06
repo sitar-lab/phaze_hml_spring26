@@ -57,8 +57,8 @@ baseline_config = {
 
     "llama2": {
         "num_transformer_layers": 32,
-        "p": 8,
-        "d": 128,
+        "p": 32,
+        "d": 32,
         "t": 1,
     },
 

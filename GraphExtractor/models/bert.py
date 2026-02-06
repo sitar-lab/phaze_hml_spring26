@@ -45,7 +45,7 @@ class BertIR(BaseModelIR):
             self.configuration = self.model.config
             self.tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
         elif self.model_name == "bertlarge":
-            self.model = BertModel.from_pretrained("bert-large-uncased")
+            self.model = BertModel.from_pretrained("bert-large-uncased", attn_implementation="eager")
             self.configuration = self.model.config
             self.tokenizer = BertTokenizer.from_pretrained(
                 "bert-large-uncased")
