@@ -39,7 +39,7 @@ Phaze uses Gurobi 10.0.1 to solve the ILP formulations. To run the ILP solver, o
 
 ## Debugging for setup
 
-### Troubleshooting Apex Installation
+### **1. Troubleshooting Apex Installation**
 
 If you encounter a CUDA version mismatch error during the `apex` installation process:
 
@@ -47,20 +47,20 @@ If you encounter a CUDA version mismatch error during the `apex` installation pr
 
 You can resolve this using one of the two methods below:
 
-1. Method 1: Align PyTorch with System CUDA
-
-    Check your system's CUDA version using `nvcc --version`, then install the PyTorch build that matches that version. For example, if your system is running CUDA 12.4, install PyTorch 2.5.1 as follows:
-    ```bash
-    pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
-    ```
-
-2. Method 2: Bypass the Version Check
+1. **Method 1: Bypass the Version Check**
 
     For minor version mismatches, it is generally safe to skip the strict version check.
 
     1. Open `apex/setup.py`.
     2. Locate and comment out lines 84–92 (the `if bare_metal_version != torch_binary_version:` block).
-    3. Save the file and restart the installation.
+    3. Save the file and restart the installation. (Rerun the last part of  `setup.sh` (starting from  `cd apex`))
+
+2. **Method 2: Align PyTorch with System CUDA**
+
+    Check your system's CUDA version using `nvcc --version`, then install the PyTorch build that matches that version. For example, if your system is running CUDA 12.4, install PyTorch 2.5.1 as follows:
+    ```bash
+    pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
+    ```
 
 Rerun the last part of  `setup.sh` (starting from  `cd apex`)
 
@@ -70,7 +70,7 @@ Rerun the last part of  `setup.sh` (starting from  `cd apex`)
 
 **Note on Compilation Time:** Compiling these extensions from source typically takes approximately 15 to 20 minutes depending on your system resources.
 
-### Troubleshooting building with C++
+### **2. Troubleshooting building with C++**
 If you every see errors such as `x86_64-conda-linux-gnu-cc: fatal error: cannot execute 'cc1plus':` when building device_placement or when running task0. Try running the command below and run again: 
 
 ```bash
