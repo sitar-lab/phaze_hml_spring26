@@ -34,7 +34,7 @@ class LlamaIR(BaseModelIR):
             # Initializing a LLaMA llama-7b style configuration LlamaForCausalLM
             config = AutoConfig.from_pretrained(
                     "meta-llama/Llama-2-7b-hf",
-                    token='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',
+                    token='',
                     num_hidden_layers=1, 
                     attn_implementation="eager",
                     )
@@ -42,12 +42,12 @@ class LlamaIR(BaseModelIR):
             self.model = AutoModelForCausalLM.from_config(
                config=config)
             self.tokenizer = AutoTokenizer.from_pretrained(
-                "meta-llama/Llama-2-7b-hf", token='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', legacy=True)
+                "meta-llama/Llama-2-7b-hf", token='', legacy=True)
         elif self.model_name == "llama2-70":
             # Initializing a LLaMA llama-7b style configuration LlamaForCausalLM
             config = AutoConfig.from_pretrained(
                     "meta-llama/Llama-2-70b-hf",
-                    token='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',
+                    token='',
                     num_hidden_layers=1, 
                     attn_implementation="eager",
                     )
@@ -55,19 +55,19 @@ class LlamaIR(BaseModelIR):
             self.model = AutoModelForCausalLM.from_config(
                config=config)
             self.tokenizer = AutoTokenizer.from_pretrained(
-                "meta-llama/Llama-2-70b-hf", token='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', legacy=True)
+                "meta-llama/Llama-2-70b-hf", token='', legacy=True)
         elif self.model_name == "llama3":
             # Initializing a LLaMA llama-7b style configuration LlamaForCausalLM
             config = AutoConfig.from_pretrained(
                     "meta-llama/Meta-Llama-3.1-70B",
-                    token='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',
+                    token='',
                     num_hidden_layers=1, 
                     attn_implementation="eager",
                     )
             self.model = AutoModelForCausalLM.from_config(
                config=config)
             self.tokenizer = AutoTokenizer.from_pretrained(
-                "meta-llama/Meta-Llama-3.1-70B", token='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', legacy=True)
+                "meta-llama/Meta-Llama-3.1-70B", token='', legacy=True)
             
         else:
             raise TypeError("Model type not found in llama", self.model_name)
