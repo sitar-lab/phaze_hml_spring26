@@ -20,7 +20,7 @@ export THIRD_PARTY_PATH=$(pwd)/phaze_hml_spring26/third_party_for_phaze
 export WHAM_PATH=$THIRD_PARTY_PATH/wham/
 export SUNSTONE_PATH=$THIRD_PARTY_PATH/sunstone/
 export PYTHONPATH=$THIRD_PARTY_PATH:$WHAM_PATH:$SUNSTONE_PATH:$PYTHONPATH
-export PYTHONPATH=$PYTHONPATH:$(pwd)/.conda/envs/phaze_env/lib/python3.10/site-packages/megatron/fused_kernels/build
+export PYTHONPATH=$(pwd)/.conda/envs/phaze_env/lib/python3.10/site-packages/megatron/fused_kernels/build:$PYTHONPATH
 
 export CXX=$(which g++)
 export CC=$(which gcc)
