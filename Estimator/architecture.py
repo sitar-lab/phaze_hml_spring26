@@ -27,10 +27,11 @@ acc_config = namedtuple(
     "acc_config", ["num_tc", "num_vc", "width", "depth", "width_vc", "GLB_Buffer", "area"])
 
 # The maximum accelerator config might not be able to fit the max of each of the above aspects of the core 
-# HML Note: updated the max core for the HML assignement (compared to original Phaze)
+# HML - Hint: look here: what is the search space now? 
 max_acc_config_per_dim = acc_config(
     4096, 4096, 256, 256, 256, 128*1024*1024, -1)
 
+# HML - Hint: look here: what is the search space now? 
 # maximum accelerator config for area constraint
 max_acc_config = acc_config(8, 2, 128, 128, 128, 128*1024*1024,  -1)
 area_constraint = -1
@@ -85,6 +86,8 @@ def generate_all_cores_to_explore():
 
     global all_possible_acc_configs
 
+    # HML Hint: how are we filtering out accelertors configs outside of the search space?
+    # How do we expand it? 
     def check_if_acc_to_explore(config):
         area_factor = 0.0 if config.num_tc == 1 or config.num_vc == 1 else 0.3
         config = config._replace(area=generate_area_of_acc(config))

@@ -1,4 +1,4 @@
-# Phaze
+# Phaze (CS/ECE 8803 HML Lab 2 version)
 
 Phaze is a framework to perform the co-optimization between accelerator architecture search and model partitioning for distributed training. For more details, please refer to our ICML 2024 paper, [Integrated Hardware Architecture and Device Placement Search](https://openreview.net/pdf?id=ucl3B05EsX).
 
@@ -7,20 +7,81 @@ Phaze is a framework to perform the co-optimization between accelerator architec
 To install the dependencies for Phaze, run:
 
 ```bash
+conda env create -f environment.yml
+export CXX=$(which g++)
+export CC=$(which gcc)
 ./setup.sh
 ```
+**Note on build Time:** Creating the conda environment and installing the packages may take some time ~10  minutes (apex will take an additional ~15 mintues)
 
-Add the following path variables in `~/.bashrc`:
+Once installation is all done, add the following path variables in `~/.bashrc`:
 ```bash
-export THIRD_PARTY_PATH=$(pwd)/phaze/third_party_for_phaze
+export THIRD_PARTY_PATH=$(pwd)/phaze_hml_spring26/third_party_for_phaze
 export WHAM_PATH=$THIRD_PARTY_PATH/wham/
 export SUNSTONE_PATH=$THIRD_PARTY_PATH/sunstone/
 export PYTHONPATH=$THIRD_PARTY_PATH:$WHAM_PATH:$SUNSTONE_PATH:$PYTHONPATH
+
+export CXX=$(which g++)
+export CC=$(which gcc)
 ```
 
-- Phaze uses Gurobi 10.0.1 to solve the ILP formulations. To run the ILP solver, obtain a Gurobi license from the [The Gurobi Website](https://www.gurobi.com/).
+Refresh you shell at your home directory by running: 
+```bash
+cd ~
+source ~/.bashrc
+```
+### Obtain a Gurobi License
 
-## Quick Start
+Phaze uses Gurobi 10.0.1 to solve the ILP formulations. To run the ILP solver, obtain a Gurobi license from the [The Gurobi Website](https://www.gurobi.com/).
+
+- Create an Gurobi WLS license and place the `gurobi.lic` file in you home directory. 
+
+### Debugging for setup
+
+#### Troubleshooting Apex Installation
+
+If you encounter a CUDA version mismatch error during the `apex` installation process:
+
+**Error:** "Cuda extensions are being compiled with a version of Cuda that does not match the version used to compile Pytorch binaries..."
+
+You can resolve this using one of the two methods below:
+
+1. Method 1: Align PyTorch with System CUDA
+
+    Check your system's CUDA version using `nvcc --version`, then install the PyTorch build that matches that version. For example, if your system is running CUDA 12.4, install PyTorch 2.5.1 as follows:
+    ```bash
+    pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
+    ```
+
+2. Method 2: Bypass the Version Check
+
+    For minor version mismatches, it is generally safe to skip the strict version check.
+
+    1. Open `apex/setup.py`.
+    2. Locate and comment out lines 84–92 (the `if bare_metal_version != torch_binary_version:` block).
+    3. Save the file and restart the installation.
+
+**Note:** Once the build starts, you should see logs indicating extensions are being compiled:
+* `building 'apex_C' extension`
+* `building 'amp_C' extension`
+
+**Note on Compilation Time:** Compiling these extensions from source typically takes approximately 15 to 20 minutes depending on your system resources.
+
+#### Troubleshooting building with C++
+If you every see errors such as `x86_64-conda-linux-gnu-cc: fatal error: cannot execute 'cc1plus':` when building device_placement or when running task0. Try running the command below and run again: 
+
+```bash
+export CXX=$(which g++)
+export CC=$(which gcc)
+```
+
+
+## Quick start (HML students): 
+Follow your lab outline to run the scripts for each task in `/hml_scripts`
+
+
+
+## Quick Start (Original Phaze instructions, Ignore for HML students)
 
 We provide scripts to run the experiments described in the paper.
 
