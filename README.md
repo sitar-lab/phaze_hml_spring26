@@ -8,6 +8,7 @@ To install the dependencies for Phaze, run:
 
 ```bash
 conda env create -f environment.yml
+conda activate phaze_env
 export CXX=$(which g++)
 export CC=$(which gcc)
 ./setup.sh
