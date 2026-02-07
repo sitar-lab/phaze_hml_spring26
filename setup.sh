@@ -11,6 +11,8 @@ pip3 install accelerate --no-cache-dir
 ######################################################
 #pip3 install megatron-lm
 pip3 install git+https://github.com/NVIDIA/Megatron-LM.git --no-cache-dir
+cp -r third_party_for_phaze/phaze-megatron-lm/megatron/*  $CONDA_PREFIX/lib/python3.10/site-packages/megatron/
+
 pip3 install six --no-cache-dir
 pip3 install pybind11 --no-cache-dir
 pip3 install ninja --no-cache-dir
@@ -66,4 +68,3 @@ cd apex
 # pip3 install -v --disable-pip-version-check --no-cache-dir  --no-build-isolation  --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 APEX_CPP_EXT=1 APEX_CUDA_EXT=1 pip install -v --no-build-isolation .
 cd ..
-cp -r third_party_for_phaze/phaze-megatron-lm/megatron/*  $CONDA_PREFIX/lib/python3.10/site-packages/megatron/

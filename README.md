@@ -20,6 +20,7 @@ export THIRD_PARTY_PATH=$(pwd)/phaze_hml_spring26/third_party_for_phaze
 export WHAM_PATH=$THIRD_PARTY_PATH/wham/
 export SUNSTONE_PATH=$THIRD_PARTY_PATH/sunstone/
 export PYTHONPATH=$THIRD_PARTY_PATH:$WHAM_PATH:$SUNSTONE_PATH:$PYTHONPATH
+export PYTHONPATH=$PYTHONPATH:$(pwd)/.conda/envs/phaze_env/lib/python3.10/site-packages/megatron/fused_kernels/build
 
 export CXX=$(which g++)
 export CC=$(which gcc)
@@ -36,9 +37,9 @@ Phaze uses Gurobi 10.0.1 to solve the ILP formulations. To run the ILP solver, o
 
 - Create an Gurobi WLS license and place the `gurobi.lic` file in you home directory. 
 
-### Debugging for setup
+## Debugging for setup
 
-#### Troubleshooting Apex Installation
+### Troubleshooting Apex Installation
 
 If you encounter a CUDA version mismatch error during the `apex` installation process:
 
@@ -61,13 +62,15 @@ You can resolve this using one of the two methods below:
     2. Locate and comment out lines 84–92 (the `if bare_metal_version != torch_binary_version:` block).
     3. Save the file and restart the installation.
 
+Rerun the last part of  `setup.sh` (starting from  `cd apex`)
+
 **Note:** Once the build starts, you should see logs indicating extensions are being compiled:
 * `building 'apex_C' extension`
 * `building 'amp_C' extension`
 
 **Note on Compilation Time:** Compiling these extensions from source typically takes approximately 15 to 20 minutes depending on your system resources.
 
-#### Troubleshooting building with C++
+### Troubleshooting building with C++
 If you every see errors such as `x86_64-conda-linux-gnu-cc: fatal error: cannot execute 'cc1plus':` when building device_placement or when running task0. Try running the command below and run again: 
 
 ```bash

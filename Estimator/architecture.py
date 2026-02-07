@@ -86,7 +86,7 @@ def generate_all_cores_to_explore():
 
     global all_possible_acc_configs
 
-    # HML Hint: how are we filtering out accelertors configs outside of the search space?
+    # HML Hint: How are we filtering out accelertors configs outside of the search space?
     # How do we expand it? 
     def check_if_acc_to_explore(config):
         area_factor = 0.0 if config.num_tc == 1 or config.num_vc == 1 else 0.3

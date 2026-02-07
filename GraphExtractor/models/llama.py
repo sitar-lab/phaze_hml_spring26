@@ -32,6 +32,7 @@ class LlamaIR(BaseModelIR):
 
         if self.model_name == "llama2":
             # Initializing a LLaMA llama-7b style configuration LlamaForCausalLM
+             # note: add hugging face token to download
             config = AutoConfig.from_pretrained(
                     "meta-llama/Llama-2-7b-hf",
                     token='',
@@ -41,6 +42,7 @@ class LlamaIR(BaseModelIR):
 
             self.model = AutoModelForCausalLM.from_config(
                config=config)
+            # note: add hugging face token to download
             self.tokenizer = AutoTokenizer.from_pretrained(
                 "meta-llama/Llama-2-7b-hf", token='', legacy=True)
         elif self.model_name == "llama2-70":
