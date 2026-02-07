@@ -54,7 +54,7 @@ def tensor_core_estimate(setupconfig, op, energy):
     cores_sptl = {"X": setupconfig["Core_x"], "Y": setupconfig["Core_y"]}
 
     # BW (words/cycle)
-    smba_bws = [None, (64, 64), (256, 256), (128, 128)]
+    smba_bws = [None, (64, 64), (setupconfig["GLB_BUFFER_BW"], setupconfig["GLB_BUFFER_BW"]), (128, 128)]
 
     # ******* this list indicate whether each operand has
     #         a dedicated buffer at each level & will be
