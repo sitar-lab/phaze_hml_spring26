@@ -31,6 +31,11 @@ Refresh you shell at your home directory by running:
 cd ~
 source ~/.bashrc
 ```
+**Important**: Check that the `PYTHONPATH` is configured correctly, and all the paths listed are valid, with: 
+```bash
+echo $PYTHONPATH
+```
+
 ### Obtain a Gurobi License
 
 Phaze uses Gurobi 10.0.1 to solve the ILP formulations. To run the ILP solver, obtain a Gurobi license from the [The Gurobi Website](https://www.gurobi.com/).
